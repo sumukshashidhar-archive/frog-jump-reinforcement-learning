@@ -102,6 +102,29 @@ class FrogGame:
         # we can do this by swapping the content of the two positions
         self.matrix[start[0]][start[1]], self.matrix[end[0]][end[1]] = self.matrix[end[0]][end[1]], self.matrix[start[0]][start[1]]
         return True
+    
+
+    def simple_move_map_resolution(self, notation):
+        mapping = {
+            '1' : (0, 0),
+            '2' : (0, 1),
+            '3' : (1, 0),
+            '4' : (1, 1),
+            '5' : (1, 2),
+            '6' : (2, 1),
+            '7' : (2, 2)
+        }
+        if notation in mapping:
+            return mapping[notation]
+        return None
+    
+
+    def make_simple_move(self, start, end):
+        start = self.simple_move_map_resolution(start)
+        end = self.simple_move_map_resolution(end)
+        if start == None or end == None:
+            return False
+        return self.move(start, end)
 
 
 
