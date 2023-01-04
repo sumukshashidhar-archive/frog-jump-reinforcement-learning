@@ -90,6 +90,19 @@ class FrogGame:
             return False
         # this means they are within bounds, and the start and end positions are valid.
         # now we need to make sure that the jump itself is valid
+        return self.check_valid_jump(start, end)
+    
+    def move(self, start, end):
+        # we just need to make sure that the move is valid first
+        if not self.check_valid_move(start, end):
+            return False
+        # now we need to make the move
+        # we need to move the content in the start position to the end position
+        # and move the content in the end position to the start position
+        # we can do this by swapping the content of the two positions
+        self.matrix[start[0]][start[1]], self.matrix[end[0]][end[1]] = self.matrix[end[0]][end[1]], self.matrix[start[0]][start[1]]
+        return True
+
 
 
 
