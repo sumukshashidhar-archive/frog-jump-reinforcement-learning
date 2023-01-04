@@ -126,9 +126,47 @@ class FrogGame:
             return False
         return self.move(start, end)
 
+    def check_game_over(self):
+        # we need to check if the frogs have reversed themselves
+        final_matrix = [
+            ['B', 'B', 'X'],
+            ['B', 'S', 'W'],
+            ['X', 'W', 'W']
+        ]
+        return self.matrix == final_matrix
+        
+
+    def play_game(self):
+        movectr = 0
+        while True:
+            # print the initial state of the game
+            self.print_matrix()
+            # now we need to get the user input
+            # we need to get the start and end positions
+            # we can do this by getting the start and end positions from the user
+            # we can do this by getting the start and end positions from the user
+            start = input("Enter the start position: ")
+            end = input("Enter the end position: ")
+            # now we need to make the move
+            # we can do this by calling the make_simple_move function
+            if not self.make_simple_move(start, end):
+                print("Invalid move")
+                continue
+            else:
+                movectr += 1
+                # check if the game is over
+                if self.check_game_over():
+                    print("Game over!")
+                    print("You won in " + str(movectr) + " moves!")
+                    break
+
+
+            
+
+
 
 
 
 if __name__ == "__main__":
     x = FrogGame()
-    x.print_matrix()
+    x.play_game()
