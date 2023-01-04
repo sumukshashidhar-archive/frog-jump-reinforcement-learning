@@ -119,7 +119,41 @@ class TestFrogGame(unittest.TestCase):
             ['W', 'W', 'B'],
             ['X', 'S', 'B']
         ])
-
+        # now let us check that the move function returns False if the move is invalid
+        self.assertEqual(game.move((0, 1), (1, 1)), False)
+        self.assertEqual(game.matrix, [
+            ['W', 'B', 'X'],
+            ['W', 'W', 'B'],
+            ['X', 'S', 'B']
+        ])
+        # let us also make sure that the move function returns false if jumping over a frog of the same color
+        self.assertEqual(game.move((1, 1), (2, 1)), True)
+        # now check the board
+        self.assertEqual(game.matrix, [
+            ['W', 'B', 'X'],
+            ['W', 'S', 'B'],
+            ['X', 'W', 'B']
+        ])
+        self.assertEqual(game.move((1, 2), (1, 1)), True)
+        self.assertEqual(game.matrix, [
+            ['W', 'B', 'X'],
+            ['W', 'B', 'S'],
+            ['X', 'W', 'B']
+        ])
+        self.assertEqual(game.move((2, 2), (1, 2)), True)
+        self.assertEqual(game.matrix, [
+            ['W', 'B', 'X'],
+            ['W', 'B', 'B'],
+            ['X', 'W', 'S']
+        ])
+        self.assertEqual(game.move((2, 1), (2, 2)), True)
+        self.assertEqual(game.matrix, [
+            ['W', 'B', 'X'],
+            ['W', 'B', 'B'],
+            ['X', 'S', 'W']
+        ])
+        # now finally, let us check that the jump over wrong frog is bad
+        self.assertEqual(game.move((0, 1), (2, 1)), False)
 
 
 
